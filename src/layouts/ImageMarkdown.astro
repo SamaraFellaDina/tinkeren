@@ -1,0 +1,20 @@
+---
+const { 
+  src, 
+  alt, 
+  width = "400px",
+  fallbackSrc = '../../public/fallback.png'
+  } = Astro.props;
+
+  
+---
+
+<img 
+src={src} 
+alt={alt} 
+width={width} 
+style="height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" 
+onerror={`this.onerror=null; this.src='${fallbackSrc}';`} 
+
+/>
+
