@@ -1,20 +1,22 @@
 ---
+import { Image } from 'astro:assets';
+
 const { 
   src, 
   alt, 
-  width = "400px",
+  width = 400,
+  height = 400,
   fallbackSrc = '../../public/fallback.png'
-  } = Astro.props;
+} = Astro.props;
 
-  
+const optimizedSrc = src.startsWith('http') ? src : Image(src, { width, height, format: 'webp' });
 ---
 
 <img 
-src={src} 
-alt={alt} 
-width={width} 
-style="height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" 
-onerror={`this.onerror=null; this.src='${fallbackSrc}';`} 
-
+  src={optimizedSrc} 
+  alt={alt} 
+  width={width} 
+  height={height} 
+  style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); object-fit: cover;"
+  onerror={`this.onerror=null; this.src='${fallbackSrc}';`} 
 />
-
