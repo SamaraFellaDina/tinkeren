@@ -10,16 +10,18 @@ const MDList = Object.values(MD);
 		Hieronder kan je alle opdrachten vinden
 	</p>
 
-  <ul>
-    {MDList.slice(0, 6).map((list) => (
-      <li>
-        <a href={list.url || '#'}>
-          <h2>{list.frontmatter?.title}</h2>
-          <p>{list.frontmatter.description}</p>
-        </a>
-      </li>
-    ))}
-  </ul>
+	<ul>
+		{MDList.sort((a, b) => Number(b.frontmatter?.id) - Number(a.frontmatter?.id))
+			.slice(0, 6)
+			.map((list) => (
+				<li>
+					<a href={list.url || '#'}>
+						<h2>{list.frontmatter?.title}</h2>
+						<p>{list.frontmatter?.description}</p>
+					</a>
+				</li>
+			))}
+	</ul>
 </Layout>
 
 <style>
@@ -35,6 +37,7 @@ const MDList = Object.values(MD);
 		padding: 2em;
 		border-radius: 3em;
 		transition: var(	--common-hover-animation);
+		cursor: pointer;
 	}
 
 	li:hover {
