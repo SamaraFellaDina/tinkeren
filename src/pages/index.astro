@@ -12,7 +12,7 @@ const MDList = Object.values(MD);
 
 	<ul>
 		{MDList.sort((a, b) => Number(b.frontmatter?.id) - Number(a.frontmatter?.id))
-			.slice(0, 6)
+			.slice(0, 7)
 			.map((list) => (
 				<li>
 					<a href={list.url || '#'}>
