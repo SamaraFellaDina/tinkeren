@@ -11,7 +11,7 @@ const MDList = Object.values(MD);
 	</p>
 
   <ul>
-    {MDList.slice(0, 4).map((list) => (
+    {MDList.slice(0, 6).map((list) => (
       <li>
         <a href={list.url || '#'}>
           <h2>{list.frontmatter?.title}</h2>
