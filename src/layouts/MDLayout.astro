@@ -1,11 +1,12 @@
 ---
 import Layout from "./Layout.astro";
-const { Video, VideoTitle } = Astro.props.frontmatter
+const { Video, VideoTitle, title } = Astro.props.frontmatter
 ---
 
 <Layout>
   <div class="containter">
   <a href="/">terug</a>
+  <h1>{title}</h1>
 
         
   <div style="padding:56.25% 0 0 0;position:relative;">
