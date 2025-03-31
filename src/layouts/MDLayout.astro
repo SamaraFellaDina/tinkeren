@@ -11,6 +11,7 @@ const headings = Astro.props.headings
   <div class="container">
   <aside>
     <h2>Inhoud</h2>
+    <p>navigeer hier door de pagina heen</p>
     {headings && headings.length > 0 ? (
       <ul>
         {headings.map((heading) => (
@@ -82,6 +83,7 @@ const headings = Astro.props.headings
   @media (min-width: 800px) {
     display: flex;
     flex-direction: row-reverse;
+    gap: 2em;
   }
 }
 
@@ -96,6 +98,7 @@ const headings = Astro.props.headings
 }
 
 .container aside {
+
   width: auto;
 
   @media (min-width: 800px) {
@@ -104,8 +107,22 @@ const headings = Astro.props.headings
 }
 
 .container aside ul {
-  position: sticky; /* Zorg ervoor dat de lijst sticky blijft */
-  top: 100px; /* Zorg ervoor dat de lijst onder de h1 komt. Pas deze waarde aan afhankelijk van de hoogte van de h1 */
+  position: sticky;
+  top: 100px;
   right: 0;
+  padding: 2em;
+  margin: 0;
+  background-color: cyan;
+  box-sizing: border-box; 
+  list-style-type: "🌺"; /* Using custom marker */
+}
+
+.container aside ul li { 
+  padding: .1em 0em .1em 0.5em
+}
+
+.container aside ul a {
+  text-decoration: none;
+  color: unset;
 }
 </style>
