@@ -1,11 +1,30 @@
 ---
 import Layout from "./Layout.astro";
 const { Video, VideoTitle, title, OriginalLink } = Astro.props.frontmatter
+
+const headings = Astro.props.headings
 ---
 
+
 <Layout>
-  <div class="containter">
   <a href="/">terug</a>
+  <div class="container">
+  <aside>
+    <h2>Inhoud</h2>
+    {headings && headings.length > 0 ? (
+      <ul>
+        {headings.map((heading) => (
+          <li key={heading.slug} style={{ marginLeft: `${(heading.depth - 1) * 10}px` }}>
+            <a href={`#${heading.slug}`}>{heading.text}</a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>Er zijn geen koppen beschikbaar voor de inhoudsopgave.</p>
+    )}
+  </aside>
+
+  <section>
   <h1>{title}</h1>
 
   {OriginalLink && (
@@ -26,7 +45,10 @@ const { Video, VideoTitle, title, OriginalLink } = Astro.props.frontmatter
   )}
 
   <script src="https://player.vimeo.com/api/player.js"></script>
+
+
   <slot/>
+  </section>
   </div>
 </Layout>
 
@@ -52,5 +74,38 @@ const { Video, VideoTitle, title, OriginalLink } = Astro.props.frontmatter
   --ratio: 1.5em;
   width: var(--ratio);
   height: auto;
+}
+.container {
+  display: block;
+  position: relative;
+
+  @media (min-width: 800px) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+
+.container section {
+  width: auto;
+
+  @media (min-width: 800px) {
+    width: 70%;
+    position: sticky;
+    top: 0;
+  }
+}
+
+.container aside {
+  width: auto;
+
+  @media (min-width: 800px) {
+    width: 30%;
+  }
+}
+
+.container aside ul {
+  position: sticky; /* Zorg ervoor dat de lijst sticky blijft */
+  top: 100px; /* Zorg ervoor dat de lijst onder de h1 komt. Pas deze waarde aan afhankelijk van de hoogte van de h1 */
+  right: 0;
 }
 </style>
